@@ -5,6 +5,10 @@ from chicken_dinner.pubgapi import PUBGCore
 from chicken_dinner.pubgapi import PUBG
 from aiogram import Bot, Dispatcher
 import asyncio
+from models import Player
+from settings import api_key, tg_token, db_main
+
+api = PUBG(api_key, "pc-eu")
 
 bot = Bot(token=tg_token)
 dp = Dispatcher()
@@ -12,6 +16,10 @@ dp = Dispatcher()
 @dp.message(CommandStart())
 async def cmd_start(message: Message):
     await message.answer('Hi')
+
+@dp.message(Command('winrate_teammates'))
+async def cmd_start(message: Message):
+    await message.answer(text="В разработке")
 
 @dp.message(Command('leaderboard'))
 async def cmd_start(message: Message):
@@ -45,7 +53,7 @@ async def cmd_start(message: Message):
 
         if i == 3:
             player_names = ['vazgenxer', 'wii663', 'Zef1r_off', 'ZLOY_PISUN', 'ZRideR59',
-                            'zZzAlexXxzZz']
+                            'zZzAlexXxzZz', 'Meehoa', 'S0XFATEEV']
             players = api.players_from_names(player_names)
 
         if i == 4:
@@ -55,7 +63,7 @@ async def cmd_start(message: Message):
             s = s + 1
             player_season = player.get_current_season()
             squad_fpp_stats = player_season.game_mode_stats("squad", "fpp")
-            await message.answer(text=f"{player.name} {s}/36")
+            await message.answer(text=f"{player.name} {s}/38")
 
             if squad_fpp_stats:
 
@@ -146,6 +154,7 @@ async def main():
 if __name__ == '__main__':
     try:
         asyncio.run(main())
+        asyncio.run(db_main())
     except KeyboardInterrupt:
         print("Бот выключен")
 
