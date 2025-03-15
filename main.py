@@ -6,18 +6,16 @@ from aiogram.types import Message
 from aiogram.filters import Command, CommandStart
 from aiogram import Bot, Dispatcher, types
 import asyncio
-from settings import tg_token, api_1, api_2
-from models import add_games_to_player, session, Game, get_games_by_player_id, get_player_id
-
-
-bot = Bot(token=tg_token)
-dp = Dispatcher()
+from settings import tg_token, api_1, api_2, DISCORD_BOT_TOKEN, session, dp, client
+from aiogram.enums import ParseMode
+from aiogram.types import Message, BotCommand
+from functions import start_telegram_bot, add_games_to_player, get_games_by_player_id, get_player_id, get_voice_channel_info
 
 @dp.message(CommandStart())
 async def cmd_start(message: Message):
     await message.answer('Hi')
 
-
+'''
 @dp.message(Command("winrate_teammates"))
 async def winrate_teammates_handler(message: types.Message):
     parts = message.text.split(maxsplit=1)
@@ -110,10 +108,6 @@ async def winrate_teammates_handler(message: types.Message):
                 if games_teammates[teammate] != 0:
                     output += (f"{s}, {teammate}, побед: {wins_teammates[teammate]}, игр сыграно: {games_teammates[teammate]}, "
                             f"процент побед: {round(wins_teammates[teammate] / games_teammates[teammate] * 100, 2)}\n")
-                else:
-                    output += (
-                        f"{s}, {teammate}, побед: {wins_teammates[teammate]}, игр сыграно: {games_teammates[teammate]}, "
-                        f"процент побед: {wins_teammates[teammate] * 100}\n")
             await message.answer(text=output)
 
             await message.answer(text="В разработке")
@@ -122,6 +116,29 @@ async def winrate_teammates_handler(message: types.Message):
 
     if len(parts) == 1:
         await message.answer(text="Введите ник игрока после комманды")
+'''
+
+@dp.message(lambda message: message.text and message.text.startswith('/status'))
+async def send_status(message: Message):
+    """Команда /status - показывает пользователей в голосовых каналах"""
+    info = await get_voice_channel_info()
+    await message.answer(info)
+
+
+@dp.message(lambda message: message.text and message.text.startswith('/help'))
+async def send_help(message: Message):
+    """Команда /help - список доступных команд"""
+    commands_text = (
+        "📜 <b>Список команд:</b>\n\n"
+        "/status - Показать, кто в голосовых каналах Discord\n"
+        "/leaderboard &lt;solo, duo, squad&gt; - Посчитать статистику по клану для выбранного режима игры (анранкед)\n"
+        
+        "/winrate_teammates &lt;nickname&gt; - Посчитать средний рейтинг со всеми участниками клана для выбранного "
+        "игрока. Отключено, на доработке\n"
+        
+        "/help - Показать список команд\n"
+    )
+    await message.answer(commands_text, parse_mode=ParseMode.HTML)
 
 @dp.message(Command("leaderboard"))
 async def winrate_teammates_handler(message: types.Message):
@@ -272,7 +289,8 @@ async def winrate_teammates_handler(message: types.Message):
         await message.answer(text="Нужно написать режим игры(solo, duo, squad)")
 
 async def main():
-    await dp.start_polling(bot)
+    asyncio.create_task(client.start(DISCORD_BOT_TOKEN))  # Запуск Discord-бота
+    await start_telegram_bot()  # Запуск Telegram-бота
 
 if __name__ == '__main__':
     try:
