@@ -15,7 +15,6 @@ from functions import start_telegram_bot, add_games_to_player, get_games_by_play
 async def cmd_start(message: Message):
     await message.answer('Hi')
 
-'''
 @dp.message(Command("winrate_teammates"))
 async def winrate_teammates_handler(message: types.Message):
     parts = message.text.split(maxsplit=1)
@@ -26,50 +25,76 @@ async def winrate_teammates_handler(message: types.Message):
                     'MIKHAILB9', 'Nikita_Kotov17', 'Rengoku1237', 'Romzes19', 'Ryukbtww',
                     'Shelby_Young', 'TaLiCmAn4IK', 'telnoter', 'tOKAE-v', 'TSARrrr',
                     'vazgenxer', 'wii663', 'Zef1r_off', 'ZLOY_PISUN', 'ZRideR59',
-                    'zZzAlexXxzZz', 'Meehoa', 'S0XFATEEV']
+                    'zZzAlexXxzZz', 'Meehoa', 'S0XFATEEV', "roychigevarro", "stabyly2", 
+                    "Esay_Sqezy", "Niigagay", "LeskaALT", "STITCH_KZ"]
+    flag = 0
     if len(parts) > 1:
         args = parts[1]
         if args in player_names:
             await message.answer(text="Игрок найден")
             players = api_1.players_from_names([args])
             if players:
-                player = players[0]
+                player_1 = players[0]
             else:
                 await message.answer(text="Игрок не найден в PUBG API")
-            player_season = player.get_current_season()
-            games_list = player_season.match_ids("squad", "fpp")
+            players = api_2.players().filter(player_names=[player_1.name])
+            player_2 = players[0]
+            games_list = player_2.matches
+            player_season = player_1.get_current_season()
+            squad_fpp_stats = player_season.game_mode_stats("squad", "fpp")
+            games_teammates = {'oran_gg_e': 0, 'ol1vOCHKA': 0, 'TexasDolly': 0, 'magichka_nuar': 0,
+                               'Shafi_____': 0, 'B1mBOSS': 0, 'karma-__-': 0, 'kuatkamiev': 0, 'TechnicolorBlack': 0,
+                               'ClickMer': 0, 'CougarHex': 0, 'EV0Like': 0, 'freaky_slider': 0, 'General-L1': 0,
+                               'Glenn_ufa': 0, 'Kingjulyen': 0, 'levirran': 0, 'lillypillyhell': 0, 'Luka_Shymkent': 0,
+                               'maksason14': 0, 'MIKHAILB9': 0, 'Nikita_Kotov17': 0, 'Rengoku1237': 0, 'Romzes19': 0,
+                               'Ryukbtww': 0, 'Shelby_Young': 0, 'TaLiCmAn4IK': 0, 'telnoter': 0, 'tOKAE-v': 0,
+                               'TSARrrr': 0, 'vazgenxer': 0, 'wii663': 0, 'Zef1r_off': 0, 'ZLOY_PISUN': 0,
+                               'ZRideR59': 0,
+                               'zZzAlexXxzZz': 0, 'Meehoa': 0, 'S0XFATEEV': 0, "STITCH_KZ": 0, "roychigevarro": 0,
+                               "stabyly2": 0, "Esay_Sqezy": 0, "Niigagay": 0, "LeskaALT": 0}
+            rank_teammates = {'oran_gg_e': 0, 'ol1vOCHKA': 0, 'TexasDolly': 0, 'magichka_nuar': 0,
+                              'Shafi_____': 0, 'B1mBOSS': 0, 'karma-__-': 0, 'kuatkamiev': 0, 'TechnicolorBlack': 0,
+                              'ClickMer': 0, 'CougarHex': 0, 'EV0Like': 0, 'freaky_slider': 0, 'General-L1': 0,
+                              'Glenn_ufa': 0, 'Kingjulyen': 0, 'levirran': 0, 'lillypillyhell': 0, 'Luka_Shymkent': 0,
+                              'maksason14': 0, 'MIKHAILB9': 0, 'Nikita_Kotov17': 0, 'Rengoku1237': 0, 'Romzes19': 0,
+                              'Ryukbtww': 0, 'Shelby_Young': 0, 'TaLiCmAn4IK': 0, 'telnoter': 0, 'tOKAE-v': 0,
+                              'TSARrrr': 0, 'vazgenxer': 0, 'wii663': 0, 'Zef1r_off': 0, 'ZLOY_PISUN': 0, 'ZRideR59': 0,
+                              'zZzAlexXxzZz': 0, 'Meehoa': 0, 'S0XFATEEV': 0, "STITCH_KZ": 0, "roychigevarro": 0,
+                              "stabyly2": 0,
+                              "Esay_Sqezy": 0, "Niigagay": 0, "LeskaALT": 0}
+            average_teammates = {'oran_gg_e': 0, 'ol1vOCHKA': 0, 'TexasDolly': 0, 'magichka_nuar': 0,
+                                 'Shafi_____': 0, 'B1mBOSS': 0, 'karma-__-': 0, 'kuatkamiev': 0, 'TechnicolorBlack': 0,
+                                 'ClickMer': 0, 'CougarHex': 0, 'EV0Like': 0, 'freaky_slider': 0, 'General-L1': 0,
+                                 'Glenn_ufa': 0, 'Kingjulyen': 0, 'levirran': 0, 'lillypillyhell': 0,
+                                 'Luka_Shymkent': 0,
+                                 'maksason14': 0, 'MIKHAILB9': 0, 'Nikita_Kotov17': 0, 'Rengoku1237': 0, 'Romzes19': 0,
+                                 'Ryukbtww': 0, 'Shelby_Young': 0, 'TaLiCmAn4IK': 0, 'telnoter': 0, 'tOKAE-v': 0,
+                                 'TSARrrr': 0, 'vazgenxer': 0, 'wii663': 0, 'Zef1r_off': 0, 'ZLOY_PISUN': 0,
+                                 'ZRideR59': 0,
+                                 'zZzAlexXxzZz': 0, 'Meehoa': 0, 'S0XFATEEV': 0, "STITCH_KZ": 0, "roychigevarro": 0,
+                                 "stabyly2": 0,
+                                 "Esay_Sqezy": 0, "Niigagay": 0, "LeskaALT": 0}
+            del games_teammates[player_1.name]
+            del rank_teammates[player_1.name]
+            del average_teammates[player_1.name]
             for game in games_list:
-                games_teammates = {'oran_gg_e' : 0, 'ol1vOCHKA' : 0, 'TexasDolly' : 0, 'magichka_nuar' : 0,
-                    'Shafi_____' : 0, 'B1mBOSS' : 0, 'karma-__-' : 0, 'kuatkamiev' : 0, 'TechnicolorBlack' : 0,
-                    'ClickMer' : 0, 'CougarHex' : 0, 'EV0Like' : 0, 'freaky_slider' : 0, 'General-L1' : 0,
-                    'Glenn_ufa' : 0, 'Kingjulyen' : 0, 'levirran' : 0, 'lillypillyhell' : 0, 'Luka_Shymkent' : 0,
-                    'maksason14' : 0, 'MIKHAILB9' : 0, 'Nikita_Kotov17' : 0, 'Rengoku1237' : 0, 'Romzes19' : 0,
-                    'Ryukbtww' : 0, 'Shelby_Young' : 0, 'TaLiCmAn4IK' : 0, 'telnoter' : 0, 'tOKAE-v' : 0,
-                    'TSARrrr' : 0, 'vazgenxer' : 0, 'wii663' : 0, 'Zef1r_off' : 0, 'ZLOY_PISUN' : 0, 'ZRideR59' : 0,
-                    'zZzAlexXxzZz' : 0, 'Meehoa' : 0, 'S0XFATEEV' : 0}
-                wins_teammates = {'oran_gg_e' : 0, 'ol1vOCHKA' : 0, 'TexasDolly' : 0, 'magichka_nuar' : 0,
-                    'Shafi_____' : 0, 'B1mBOSS' : 0, 'karma-__-' : 0, 'kuatkamiev' : 0, 'TechnicolorBlack' : 0,
-                    'ClickMer' : 0, 'CougarHex' : 0, 'EV0Like' : 0, 'freaky_slider' : 0, 'General-L1' : 0,
-                    'Glenn_ufa' : 0, 'Kingjulyen' : 0, 'levirran' : 0, 'lillypillyhell' : 0, 'Luka_Shymkent' : 0,
-                    'maksason14' : 0, 'MIKHAILB9' : 0, 'Nikita_Kotov17' : 0, 'Rengoku1237' : 0, 'Romzes19' : 0,
-                    'Ryukbtww' : 0, 'Shelby_Young' : 0, 'TaLiCmAn4IK' : 0, 'telnoter' : 0, 'tOKAE-v' : 0,
-                    'TSARrrr' : 0, 'vazgenxer' : 0, 'wii663' : 0, 'Zef1r_off' : 0, 'ZLOY_PISUN' : 0, 'ZRideR59' : 0,
-                    'zZzAlexXxzZz' : 0, 'Meehoa' : 0, 'S0XFATEEV' : 0}
-                del games_teammates[player.name]
-                del wins_teammates[player.name]
                 teammate_list = []
                 team1 = ''
                 team2 = ''
                 team3 = ''
-                game_mode = 'squad'
                 result = ''
-                game_api = api_1.match(game)
+                game_api = api_2.matches().get(game.id)
+                game_mode = game_api.game_mode
+                if game_mode == 'squad-fpp':
+                    flag = flag + 1
                 for roster in game_api.rosters:
-                    for teammate in roster.player_names:
-                        if teammate == player.name:
-                            teammate_list = roster.player_names
-                            teammate_list.remove(player.name)
-                            result = roster.won
+                    for teammate in roster.participants:
+                        if teammate.name == player_1.name:
+                            participants = roster.participants
+                            for participant in participants:
+                                teammate_list.append(participant.name)
+                            teammate_list.remove(player_1.name)
+                            result = roster.stats['rank']
                             break
                 if teammate_list.__len__() == 3:
                     team1 = teammate_list[0]
@@ -80,43 +105,46 @@ async def winrate_teammates_handler(message: types.Message):
                     team2 = teammate_list[1]
                 if teammate_list.__len__() == 1:
                     team1 = teammate_list[0]
-                if result == False:
-                    result = 'lose'
+                if result != '':
+                    add_games_to_player(session=session, player_nickname=player_1.name, game_id=game.id, result=result, game_mode=game_mode,
+                                        teammate1=team1, teammate2=team2, teammate3=team3)
                 else:
-                    result = 'win'
-                add_games_to_player(session=session, player_nickname=player.name, game_id=game, result=result, game_mode=game_mode,
-                                    teammate1=team1, teammate2=team2, teammate3=team3)
-            for game in get_games_by_player_id(session, get_player_id(session, player.name)):
-                if game.result == 'win':
+                    add_games_to_player(session=session, player_nickname=player_1.name, game_id=game.id, result=0,
+                                        game_mode=game_mode, teammate1=team1, teammate2=team2, teammate3=team3)
+            for game in get_games_by_player_id(session, get_player_id(session, player_1.name)):
+                if game.game_mode == 'squad-fpp':
                     if game.teammate1 in player_names:
-                        wins_teammates[game.teammate1] = wins_teammates[game.teammate1] + 1
+                        rank_teammates[game.teammate1] = rank_teammates[game.teammate1] + game.result
                     if game.teammate2 in player_names:
-                        wins_teammates[game.teammate2] = wins_teammates[game.teammate2] + 1
+                        rank_teammates[game.teammate2] = rank_teammates[game.teammate2] + game.result
                     if game.teammate3 in player_names:
-                        wins_teammates[game.teammate3] = wins_teammates[game.teammate3] + 1
-                if game.teammate1 in player_names:
-                    games_teammates[game.teammate1] = games_teammates[game.teammate1] + 1
-                if game.teammate2 in player_names:
-                    games_teammates[game.teammate2] = games_teammates[game.teammate2] + 1
-                if game.teammate3 in player_names:
-                    games_teammates[game.teammate3] = games_teammates[game.teammate3] + 1
+                        rank_teammates[game.teammate3] = rank_teammates[game.teammate3] + game.result
+                    if game.teammate1 in player_names:
+                        games_teammates[game.teammate1] = games_teammates[game.teammate1] + 1
+                    if game.teammate2 in player_names:
+                        games_teammates[game.teammate2] = games_teammates[game.teammate2] + 1
+                    if game.teammate3 in player_names:
+                        games_teammates[game.teammate3] = games_teammates[game.teammate3] + 1
             s = 0
             output = ''
-            player_names.remove(player.name)
-            for teammate in player_names:
-                s += 1
-                if games_teammates[teammate] != 0:
-                    output += (f"{s}, {teammate}, побед: {wins_teammates[teammate]}, игр сыграно: {games_teammates[teammate]}, "
-                            f"процент побед: {round(wins_teammates[teammate] / games_teammates[teammate] * 100, 2)}\n")
+            player_names.remove(player_1.name)
+            for player in player_names:
+                if games_teammates[player] != 0:
+                    average_teammates[player] = round(rank_teammates[player] / games_teammates[player], 2)
+                else:
+                    average_teammates[player] = rank_teammates[player]
+            sorted_average_teammates = dict(sorted(average_teammates.items(), key=lambda item: item[1]))
+            for teammate in sorted_average_teammates.keys():
+                if(games_teammates[teammate] != 0):
+                    s = s + 1
+                    output += (f"{s}, {teammate}, средний рейтинг: {sorted_average_teammates[teammate]}, игр сыграно: {games_teammates[teammate]}\n")
             await message.answer(text=output)
-
-            await message.answer(text="В разработке")
+            await message.answer(text=f"В базе данных найдено {flag} / {squad_fpp_stats["rounds_played"]} игр")
         else:
             await message.answer(text="Игрок не найден")
 
     if len(parts) == 1:
         await message.answer(text="Введите ник игрока после комманды")
-'''
 
 @dp.message(lambda message: message.text and message.text.startswith('/status'))
 async def send_status(message: Message):
@@ -134,7 +162,7 @@ async def send_help(message: Message):
         "/leaderboard &lt;solo, duo, squad&gt; - Посчитать статистику по клану для выбранного режима игры (анранкед)\n"
         
         "/winrate_teammates &lt;nickname&gt; - Посчитать средний рейтинг со всеми участниками клана для выбранного "
-        "игрока. Отключено, на доработке\n"
+        "игрока.\n"
         
         "/help - Показать список команд\n"
     )
@@ -179,10 +207,14 @@ async def winrate_teammates_handler(message: types.Message):
 
             if i == 3:
                 player_names = ['vazgenxer', 'wii663', 'Zef1r_off', 'ZLOY_PISUN', 'ZRideR59',
-                                'zZzAlexXxzZz', 'Meehoa', 'S0XFATEEV']
+                                'zZzAlexXxzZz', 'Meehoa', 'S0XFATEEV', "roychigevarro", "stabyly2"]
                 players = api_1.players_from_names(player_names)
 
             if i == 4:
+                player_names = ["Easy_Sqezy", "Niigagay", "LeshkaALT", "STITCH_KZ"]
+                players = api_1.players_from_names(player_names)
+
+            if i == 5:
                 break
 
             for player in players:
@@ -198,7 +230,7 @@ async def winrate_teammates_handler(message: types.Message):
                 if args == 'solo':
                     squad_fpp_stats = player_season.game_mode_stats("solo", "fpp")
 
-                await message.answer(text=f"{player.name} {s}/38")
+                await message.answer(text=f"{player.name} {s}/44")
 
                 if squad_fpp_stats:
 
