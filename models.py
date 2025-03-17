@@ -46,7 +46,7 @@ class Game(Base):
 
     id = Column(Integer, primary_key=True)
     game_id = Column(String(100), nullable=False)  # Исправлено на String
-    result = Column(String(100), nullable=False)
+    result = Column(Integer, default=0)
     game_mode = Column(String(100), nullable=False)
     teammate1 = Column(String(50))
     teammate2 = Column(String(50))
@@ -55,20 +55,22 @@ class Game(Base):
     players = relationship("Player", secondary=game_players, back_populates="games")
 
     def __repr__(self):
-        return f"Game(id={self.id}, game_id='{self.game_id}', result='{self.result.name}')"
+        return f"Game(id={self.id}, game_id='{self.game_id}', result='{self.result}')"
 
 
 # Создание таблиц
 Base.metadata.create_all(engine)
 
 nicknames = [
-    "oran_gg_e", "ol1vOCHKA", "TexasDolly", "magichka_nuar", "Shafi_____", "B1mBOSS",
-    "karma-__-", "kuatkamiev", "TechnicolorBlack", "ClickMer", "CougarHex", "EV0Like",
-    "freaky_slider", "General-L1", "Glenn_ufa", "Kingjulyen", "levirran", "lillypillyhell",
-    "Luka_Shymkent", "maksason14", "MIKHAILB9", "Nikita_Kotov17", "Rengoku1237", "Romzes19",
-    "Ryukbtww", "Shelby_Young", "TaLiCmAn4IK", "telnoter", "tOKAE-v", "TSARrrr",
-    "vazgenxer", "wii663", "Zef1r_off", "ZLOY_PISUN", "ZRideR59", "zZzAlexXxzZz",
-    "Meehoa", "S0XFATEEV"
+    'oran_gg_e', 'ol1vOCHKA', 'TexasDolly', 'magichka_nuar', 'Shafi_____',
+    'B1mBOSS', 'karma-__-', 'kuatkamiev', 'TechnicolorBlack', 'ClickMer',
+    'CougarHex', 'EV0Like', 'freaky_slider', 'General-L1', 'Glenn_ufa',
+    'Kingjulyen', 'levirran', 'lillypillyhell', 'Luka_Shymkent', 'maksason14',
+    'MIKHAILB9', 'Nikita_Kotov17', 'Rengoku1237', 'Romzes19', 'Ryukbtww',
+    'Shelby_Young', 'TaLiCmAn4IK', 'telnoter', 'tOKAE-v', 'TSARrrr',
+    'vazgenxer', 'wii663', 'Zef1r_off', 'ZLOY_PISUN', 'ZRideR59',
+    'zZzAlexXxzZz', 'Meehoa', 'S0XFATEEV', "roychigevarro", "stabyly2",
+    "Esay_Sqezy", "Niigagay", "LeskaALT", "STITCH_KZ"
 ]
 
 for nickname in nicknames:
