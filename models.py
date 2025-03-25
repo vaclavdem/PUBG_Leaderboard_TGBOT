@@ -70,7 +70,7 @@ nicknames = [
     'Shelby_Young', 'TaLiCmAn4IK', 'telnoter', 'tOKAE-v', 'TSARrrr',
     'vazgenxer', 'wii663', 'Zef1r_off', 'ZLOY_PISUN', 'ZRideR59',
     'zZzAlexXxzZz', 'Meehoa', 'S0XFATEEV', "roychigevarro", "stabyly2",
-    "Esay_Sqezy", "Niigagay", "LeskaALT", "STITCH_KZ"
+    "Esay_Sqezy", "Niigagay", "LeshkaALT", "STITCH_KZ"
 ]
 
 for nickname in nicknames:
