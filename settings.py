@@ -14,10 +14,6 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram import Bot, Dispatcher, types
 from aiogram.enums import ParseMode
 
-GUILD_ID = 627073760016465930
-
-# Подключение к MySQL
-DATABASE_URL = "mysql+mysqlconnector://Vatslav:Va_12345678@localhost/PUBG_db"
 engine = create_engine(DATABASE_URL)
 
 Base = declarative_base()
