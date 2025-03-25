@@ -14,6 +14,8 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram import Bot, Dispatcher, types
 from aiogram.enums import ParseMode
 
+GUILD_ID = 627073760016465930
+
 # Подключение к MySQL
 DATABASE_URL = "mysql+mysqlconnector://Vatslav:Va_12345678@localhost/PUBG_db"
 engine = create_engine(DATABASE_URL)
@@ -40,4 +42,7 @@ session = Session()
 # API PUBG
 api_1 = chicken_dinner.pubgapi.PUBG(api_key, "pc-eu")
 
-api_2 = pubg_python.PUBG(api_key, Shard.PC_EU)
+api_2 = pubg_python.PUBG(api_key, Shard.STEAM)
+
+
+
