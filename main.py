@@ -26,7 +26,7 @@ async def winrate_teammates_handler(message: types.Message):
                     'Shelby_Young', 'TaLiCmAn4IK', 'telnoter', 'tOKAE-v', 'TSARrrr',
                     'vazgenxer', 'wii663', 'Zef1r_off', 'ZLOY_PISUN', 'ZRideR59',
                     'zZzAlexXxzZz', 'Meehoa', 'S0XFATEEV', "roychigevarro", "stabyly2", 
-                    "Esay_Sqezy", "Niigagay", "LeskaALT", "STITCH_KZ"]
+                    "Esay_Sqezy", "Niigagay", "LeshkaALT", "STITCH_KZ"]
     flag = 0
     if len(parts) > 1:
         args = parts[1]
@@ -48,10 +48,9 @@ async def winrate_teammates_handler(message: types.Message):
                                'Glenn_ufa': 0, 'Kingjulyen': 0, 'levirran': 0, 'lillypillyhell': 0, 'Luka_Shymkent': 0,
                                'maksason14': 0, 'MIKHAILB9': 0, 'Nikita_Kotov17': 0, 'Rengoku1237': 0, 'Romzes19': 0,
                                'Ryukbtww': 0, 'Shelby_Young': 0, 'TaLiCmAn4IK': 0, 'telnoter': 0, 'tOKAE-v': 0,
-                               'TSARrrr': 0, 'vazgenxer': 0, 'wii663': 0, 'Zef1r_off': 0, 'ZLOY_PISUN': 0,
-                               'ZRideR59': 0,
+                               'TSARrrr': 0, 'vazgenxer': 0, 'wii663': 0, 'Zef1r_off': 0, 'ZLOY_PISUN': 0, 'ZRideR59': 0,
                                'zZzAlexXxzZz': 0, 'Meehoa': 0, 'S0XFATEEV': 0, "STITCH_KZ": 0, "roychigevarro": 0,
-                               "stabyly2": 0, "Esay_Sqezy": 0, "Niigagay": 0, "LeskaALT": 0}
+                               "stabyly2": 0, "Esay_Sqezy": 0, "Niigagay": 0, "LeshkaALT": 0}
             rank_teammates = {'oran_gg_e': 0, 'ol1vOCHKA': 0, 'TexasDolly': 0, 'magichka_nuar': 0,
                               'Shafi_____': 0, 'B1mBOSS': 0, 'karma-__-': 0, 'kuatkamiev': 0, 'TechnicolorBlack': 0,
                               'ClickMer': 0, 'CougarHex': 0, 'EV0Like': 0, 'freaky_slider': 0, 'General-L1': 0,
@@ -60,20 +59,16 @@ async def winrate_teammates_handler(message: types.Message):
                               'Ryukbtww': 0, 'Shelby_Young': 0, 'TaLiCmAn4IK': 0, 'telnoter': 0, 'tOKAE-v': 0,
                               'TSARrrr': 0, 'vazgenxer': 0, 'wii663': 0, 'Zef1r_off': 0, 'ZLOY_PISUN': 0, 'ZRideR59': 0,
                               'zZzAlexXxzZz': 0, 'Meehoa': 0, 'S0XFATEEV': 0, "STITCH_KZ": 0, "roychigevarro": 0,
-                              "stabyly2": 0,
-                              "Esay_Sqezy": 0, "Niigagay": 0, "LeskaALT": 0}
+                              "stabyly2": 0, "Esay_Sqezy": 0, "Niigagay": 0, "LeshkaALT": 0}
             average_teammates = {'oran_gg_e': 0, 'ol1vOCHKA': 0, 'TexasDolly': 0, 'magichka_nuar': 0,
                                  'Shafi_____': 0, 'B1mBOSS': 0, 'karma-__-': 0, 'kuatkamiev': 0, 'TechnicolorBlack': 0,
                                  'ClickMer': 0, 'CougarHex': 0, 'EV0Like': 0, 'freaky_slider': 0, 'General-L1': 0,
-                                 'Glenn_ufa': 0, 'Kingjulyen': 0, 'levirran': 0, 'lillypillyhell': 0,
-                                 'Luka_Shymkent': 0,
+                                 'Glenn_ufa': 0, 'Kingjulyen': 0, 'levirran': 0, 'lillypillyhell': 0, 'Luka_Shymkent': 0,
                                  'maksason14': 0, 'MIKHAILB9': 0, 'Nikita_Kotov17': 0, 'Rengoku1237': 0, 'Romzes19': 0,
                                  'Ryukbtww': 0, 'Shelby_Young': 0, 'TaLiCmAn4IK': 0, 'telnoter': 0, 'tOKAE-v': 0,
-                                 'TSARrrr': 0, 'vazgenxer': 0, 'wii663': 0, 'Zef1r_off': 0, 'ZLOY_PISUN': 0,
-                                 'ZRideR59': 0,
+                                 'TSARrrr': 0, 'vazgenxer': 0, 'wii663': 0, 'Zef1r_off': 0, 'ZLOY_PISUN': 0, 'ZRideR59': 0,
                                  'zZzAlexXxzZz': 0, 'Meehoa': 0, 'S0XFATEEV': 0, "STITCH_KZ": 0, "roychigevarro": 0,
-                                 "stabyly2": 0,
-                                 "Esay_Sqezy": 0, "Niigagay": 0, "LeskaALT": 0}
+                                 "stabyly2": 0, "Esay_Sqezy": 0, "Niigagay": 0, "LeshkaALT": 0}
             del games_teammates[player_1.name]
             del rank_teammates[player_1.name]
             del average_teammates[player_1.name]
@@ -85,8 +80,6 @@ async def winrate_teammates_handler(message: types.Message):
                 result = ''
                 game_api = api_2.matches().get(game.id)
                 game_mode = game_api.game_mode
-                if game_mode == 'squad-fpp':
-                    flag = flag + 1
                 for roster in game_api.rosters:
                     for teammate in roster.participants:
                         if teammate.name == player_1.name:
@@ -125,6 +118,7 @@ async def winrate_teammates_handler(message: types.Message):
                         games_teammates[game.teammate2] = games_teammates[game.teammate2] + 1
                     if game.teammate3 in player_names:
                         games_teammates[game.teammate3] = games_teammates[game.teammate3] + 1
+                    flag = flag + 1
             s = 0
             output = ''
             player_names.remove(player_1.name)
